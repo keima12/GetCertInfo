@@ -40,24 +40,14 @@ def exist_a_record(hostname):
             return False
     except:
         return False
-# ドメイン名を拡張する。
-# ドメイン名にwwwをつけたものを追加する。
-def expand_domain_name(domain_name):
-    r = [domain_name]
-    if domain_name.split(".")[0] != "www":
-        r.append("www.{name}".format(name=domain_name))
-    return r
 
 # ドメイン名と証明書情報を取得する。
 def get_domain_name_cert(domai_names):
     # 処理対象のドメイン名を作成する。
     proc_domain_names = []
     for domain_name in domai_names:
-        work_names = expand_domain_name(domain_name)
-        # Aレコードがある場合のみ処理対象とする。
-        for work_name in work_names:
-            if exist_a_record(work_name):
-                proc_domain_names.append(work_name)
+        if exist_a_record(domain_name):
+            proc_domain_names.append(domain_name)
     # 証明書情報を作成する。
     cert_info_names = []
     for proc_domain_name in proc_domain_names:

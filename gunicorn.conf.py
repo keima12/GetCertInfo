@@ -1,6 +1,7 @@
 import multiprocessing
-
-bind = "0.0.0.0:8000"
+wsgi_app = 'app:app'
+bind = "0.0.0.0:8081"
+#daemon = True
 workers = multiprocessing.cpu_count() * 2 + 1
-accesslog = "/var/log/access_log"
-errorlog = "/var/log/error_log"
+#accesslog = "./log/access_log"
+#errorlog = "./log/error_log"
